@@ -1,0 +1,299 @@
+{
+  "info": {
+    "name": "ETF Compliance Workflow Engine",
+    "description": "API collection for testing filing workflows",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Filings",
+      "item": [
+        {
+          "name": "Create Filing",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filing_name\": \"Q1 2025 Holdings Report\",\n  \"filing_type\": \"N-PORT\",\n  \"content\": {\n    \"fund_name\": \"Corgi Innovation ETF\",\n    \"series_id\": \"S000067890\",\n    \"reporting_period_end\": \"2025-03-31\",\n    \"total_assets\": 250000000,\n    \"holdings\": [\n      {\"ticker\": \"NVDA\", \"shares\": 5000, \"value\": 4250000}\n    ]\n  },\n  \"created_by\": \"john.doe@corgi.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/filings",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings"]
+            }
+          }
+        },
+        {
+          "name": "Get Filing",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/filings/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1"]
+            }
+          }
+        },
+        {
+          "name": "List Filings",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/filings?limit=20",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "draft",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Submit for Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"actor\": \"john.doe@corgi.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/filings/1/submit",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1", "submit"]
+            }
+          }
+        },
+        {
+          "name": "Approve Filing",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approved\": true,\n  \"reviewer\": \"jane.smith@corgi.com\",\n  \"comments\": \"All holdings reconciled. Approved for submission.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/filings/1/approve",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1", "approve"]
+            }
+          }
+        },
+        {
+          "name": "Reject Filing",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approved\": false,\n  \"reviewer\": \"jane.smith@corgi.com\",\n  \"comments\": \"Holdings data incomplete. Please add expense ratios.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/filings/1/approve",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1", "approve"]
+            }
+          }
+        },
+        {
+          "name": "Create Revision",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": {\n    \"fund_name\": \"Corgi Innovation ETF\",\n    \"series_id\": \"S000067890\",\n    \"reporting_period_end\": \"2025-03-31\",\n    \"total_assets\": 250000000,\n    \"holdings\": [\n      {\"ticker\": \"NVDA\", \"shares\": 5000, \"value\": 4250000}\n    ],\n    \"expense_ratio\": 0.0035\n  },\n  \"updated_by\": \"john.doe@corgi.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/filings/1/revise",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1", "revise"]
+            }
+          }
+        },
+        {
+          "name": "Get Workflow Status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/filings/1/workflow",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1", "workflow"]
+            }
+          }
+        },
+        {
+          "name": "Get Version History",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/filings/1/versions",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1", "versions"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Audit",
+      "item": [
+        {
+          "name": "Get Filing History",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/filings/1/history",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["filings", "1", "history"]
+            }
+          }
+        },
+        {
+          "name": "Get Recent Activity",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/audit/recent?limit=50",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["audit", "recent"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Actor History",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/audit/actor/john.doe@corgi.com",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["audit", "actor", "john.doe@corgi.com"]
+            }
+          }
+        },
+        {
+          "name": "Verify Chain of Custody",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/audit/filing/1/custody",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["audit", "filing", "1", "custody"]
+            }
+          }
+        },
+        {
+          "name": "Get Status Changes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/audit/filing/1/status-changes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["audit", "filing", "1", "status-changes"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health & Info",
+      "item": [
+        {
+          "name": "Root",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": [""]
+            }
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8000/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

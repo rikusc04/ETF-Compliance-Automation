@@ -1,0 +1,128 @@
+{
+  "examples": [
+    {
+      "name": "Valid N-PORT Filing",
+      "filing_type": "N-PORT",
+      "description": "Quarterly holdings report for an ETF",
+      "payload": {
+        "filing_name": "Q4 2024 Holdings Report - Innovation ETF",
+        "filing_type": "N-PORT",
+        "content": {
+          "fund_name": "Corgi Innovation ETF",
+          "series_id": "S000067890",
+          "reporting_period_end": "2024-12-31",
+          "total_assets": 350000000,
+          "holdings": [
+            {
+              "ticker": "NVDA",
+              "cusip": "67066G104",
+              "shares": 125000,
+              "value": 15625000,
+              "weight": 4.46
+            },
+            {
+              "ticker": "MSFT",
+              "cusip": "594918104",
+              "shares": 75000,
+              "value": 31875000,
+              "weight": 9.11
+            },
+            {
+              "ticker": "GOOGL",
+              "cusip": "02079K305",
+              "shares": 100000,
+              "value": 14500000,
+              "weight": 4.14
+            }
+          ],
+          "expense_ratio": 0.0035,
+          "turnover_rate": 0.15
+        },
+        "created_by": "portfolio.manager@corgi.com"
+      }
+    },
+    {
+      "name": "Valid N-CEN Filing",
+      "filing_type": "N-CEN",
+      "description": "Annual report for certified information",
+      "payload": {
+        "filing_name": "2024 Annual Report - Growth ETF",
+        "filing_type": "N-CEN",
+        "content": {
+          "fund_name": "Corgi Growth ETF",
+          "series_id": "S000012345",
+          "fiscal_year_end": "2024-12-31",
+          "total_net_assets": 500000000,
+          "investment_objective": "Long-term capital appreciation",
+          "total_expenses": 1750000,
+          "portfolio_turnover_rate": 0.22,
+          "board_members": [
+            {"name": "John Smith", "role": "Chairman", "independent": true},
+            {"name": "Jane Doe", "role": "Director", "independent": true}
+          ]
+        },
+        "created_by": "compliance.officer@corgi.com"
+      }
+    },
+    {
+      "name": "Valid 485BPOS Filing",
+      "filing_type": "485BPOS",
+      "description": "Post-effective amendment to prospectus",
+      "payload": {
+        "filing_name": "Updated Prospectus - Tech ETF",
+        "filing_type": "485BPOS",
+        "content": {
+          "fund_name": "Corgi Technology ETF",
+          "series_id": "S000054321",
+          "prospectus_text": "SUMMARY PROSPECTUS\n\nCorgi Technology ETF\nTicker: CGTC\n\nINVESTMENT OBJECTIVE\nThe Fund seeks to track the investment results of an index composed of U.S. technology companies...",
+          "effective_date": "2025-03-01",
+          "sec_file_number": "811-23456",
+          "key_changes": [
+            "Updated fee schedule",
+            "Added new investment strategy details",
+            "Revised risk disclosures"
+          ]
+        },
+        "created_by": "legal@corgi.com"
+      }
+    },
+    {
+      "name": "Invalid Filing - Missing Fields",
+      "filing_type": "N-PORT",
+      "description": "This will fail validation due to missing required fields",
+      "payload": {
+        "filing_name": "Incomplete Holdings Report",
+        "filing_type": "N-PORT",
+        "content": {
+          "fund_name": "Test ETF"
+        },
+        "created_by": "test@corgi.com"
+      },
+      "expected_error": "Missing required fields: series_id, reporting_period_end, total_assets, holdings"
+    },
+    {
+      "name": "Reconciliation Warning",
+      "filing_type": "N-PORT",
+      "description": "Valid but will trigger warning about holdings sum mismatch",
+      "payload": {
+        "filing_name": "Q1 2025 Holdings - Warning Example",
+        "filing_type": "N-PORT",
+        "content": {
+          "fund_name": "Corgi Test ETF",
+          "series_id": "S000099999",
+          "reporting_period_end": "2025-03-31",
+          "total_assets": 100000000,
+          "holdings": [
+            {
+              "ticker": "AAPL",
+              "shares": 10000,
+              "value": 1850000
+            }
+          ]
+        },
+        "created_by": "test@corgi.com"
+      },
+      "expected_warning": "Holdings sum differs from total assets by >5%"
+    }
+  ]
+}

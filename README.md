@@ -4,7 +4,7 @@ A lightweight system for managing regulatory filing workflows with built-in audi
 
 ## Purpose
 
-This project is an ETF Compliance Workflow Engine built to simulate regulatory filings. The goal was to design a system that enforces rules through the system itself.
+This project is an ETF Compliance Workflow Engine built to simulate regulatory filings. The goal was to design a validation workflow that enforces rules through the system itself.
 
 This system demonstrates how to turn manual ETF compliance workflows into structured, auditable software. It shows:
 

@@ -84,7 +84,7 @@ class ApprovalRequest(BaseModel):
         json_schema_extra = {
             "example": {
                 "approved": True,
-                "reviewer": "jane.smith@corgi.com",
+                "reviewer": "first.last@corgi.com",
                 "comments": "All holdings reconciled. Approved for submission."
             }
         }

@@ -127,8 +127,8 @@ python -m src.database
 python -m src.main
 ```
 
-# Server will run at http://localhost:8000
-# API docs: http://localhost:8000/docs
+- Server will run at http://localhost:8000
+- API docs: http://localhost:8000/docs
 ---
 
 ## API Examples

@@ -4,6 +4,8 @@ A lightweight system for managing regulatory filing workflows with built-in audi
 
 ## Purpose
 
+This project is an ETF Compliance Workflow Engine built to simulate regulatory filings. The goal was to design a system that enforces rules through the system itself.
+
 This system demonstrates how to turn manual ETF compliance workflows into structured, auditable software. It shows:
 
 1. **State machine enforcement** for regulatory approval flows
@@ -246,6 +248,15 @@ etf-compliance-engine/
 ```
 
 ---
+
+## Tech Stack
+
+- FastAPI (type-safe, auto docs)
+- SQLite (ACID, simple - would use Postgres in prod)
+- Pydantic (runtime validation)
+- Claude API (AI validation)
+
+--
 
 ## Key Takeaways
 

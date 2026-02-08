@@ -66,7 +66,7 @@ def init_database(reset: bool = False) -> None:
     """
     if reset and DATABASE_PATH.exists():
         DATABASE_PATH.unlink()
-        print("🗑️  Deleted existing database")
+        print("Deleted existing database")
     
     # Ensure database directory exists
     DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -78,19 +78,19 @@ def init_database(reset: bool = False) -> None:
         with open(SCHEMA_PATH, 'r') as f:
             schema = f.read()
         conn.executescript(schema)
-        print("✅ Database schema created")
+        print("Database schema created")
         
         # Load and execute seed data
         with open(SEED_PATH, 'r') as f:
             seed = f.read()
         conn.executescript(seed)
-        print("✅ Seed data loaded")
+        print("Seed data loaded")
         
         conn.commit()
-        print(f"✅ Database initialized at {DATABASE_PATH}")
+        print(f"Database initialized at {DATABASE_PATH}")
         
     except Exception as e:
-        print(f"❌ Database initialization failed: {e}")
+        print(f"Database initialization failed: {e}")
         raise
     finally:
         conn.close()

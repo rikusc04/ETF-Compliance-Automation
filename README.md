@@ -126,7 +126,10 @@ python -m src.database
 ```bash
 python -m src.main
 ```
-
+- Optionally, if you want to reset the database every time you start the server, run the command:
+```bash
+RESET_DB=true python -m src.main
+```
 - Server will run at http://localhost:8000
 - API docs: http://localhost:8000/docs
 ---

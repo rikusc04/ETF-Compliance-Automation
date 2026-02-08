@@ -1,0 +1,14 @@
+{
+  "filing_name": "Q1 2025 Holdings Report",
+  "filing_type": "N-PORT",
+  "content": {
+    "fund_name": "Corgi Innovation ETF",
+    "series_id": "S000067890",
+    "reporting_period_end": "2025-03-31",
+    "total_assets": 250000000,
+    "holdings": [
+      {"ticker": "NVDA", "shares": 5000, "value": 4250000}
+    ]
+  },
+  "created_by": "test@corgi.com"
+}

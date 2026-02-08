@@ -130,8 +130,9 @@ python -m src.main
 ```bash
 RESET_DB=true python -m src.main
 ```
-- Server will run at http://localhost:8000
-- API docs: http://localhost:8000/docs
+- Server runs at: http://localhost:8000
+- Interactive API documentation: http://localhost:8000/docs
+- On first startup, the database is automatically initialized and populated with example seed data
 ---
 
 ## API Examples
